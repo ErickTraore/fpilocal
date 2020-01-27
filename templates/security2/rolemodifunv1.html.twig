@@ -1,0 +1,16 @@
+{% block body %}
+<h2> modif un V1: </h2>
+<h4>Veullez entrer un utilisateur.<h4>
+{% if message_securiry2 is defined %}
+{{ message_securiry2 }}
+{% endif %}
+{{ form_start(formUser, { attr: {novalidate: 'novalidate'} }) }}
+
+ {{ form_end(formUser) }} 
+
+{% endblock %}
+{% if message_securiry2 is defined %}
+{{ message_securiry2 }}
+{% endif %}
+{% block droite %}
+{% endblock %}

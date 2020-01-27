@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tablelyon{% endblock %}
+
+{% block body %}
+    <h1>Tablelyon</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tablelyon.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ tablelyon.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ tablelyon.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ tablelyon.username }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ tablelyon.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ tablelyon.roles }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('tablelyon_index') }}">back to list</a>
+
+    <a href="{{ path('tablelyon_edit', {'id': tablelyon.id}) }}">edit</a>
+
+    {{ include('tablelyon/_delete_form.html.twig') }}
+{% endblock %}

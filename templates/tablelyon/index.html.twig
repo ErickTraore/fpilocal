@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tablelyon index{% endblock %}
+
+{% block body %}
+    <h1>Tablelyon index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Titre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tablelyon in tablelyons %}
+            <tr>
+                <td>{{ tablelyon.id }}</td>
+                <td>{{ tablelyon.firstname }}</td>
+                <td>{{ tablelyon.lastname }}</td>
+                <td>{{ tablelyon.username }}</td>
+                <td>{{ tablelyon.email }}</td>
+                <td>{{ tablelyon.roles }}</td>
+                <td>{{ tablelyon.titre }}</td>
+                <td>
+                    <a href="{{ path('tablelyon_show', {'id': tablelyon.id}) }}">show</a>
+                    <a href="{{ path('tablelyon_edit', {'id': tablelyon.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tablelyon_new') }}">Create new</a>
+{% endblock %}

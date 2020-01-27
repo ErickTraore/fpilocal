@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Tablelyon{% endblock %}
+
+{% block body %}
+    <h1>Edit Tablelyon</h1>
+
+    {{ include('tablelyon/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('tablelyon_index') }}">back to list</a>
+
+    {{ include('tablelyon/_delete_form.html.twig') }}
+{% endblock %}

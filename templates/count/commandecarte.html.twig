@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation Carte Adhesion{% endblock %}
+
+{% block body %}
+
+ <div class="well">
+ <ul>
+  {% for count in counts %}
+                {# {% for adhesion in adhesions %}
+                    <li>{{ adhesion['count.id']}}</li>
+                {% endfor %} #}
+
+    <li>{{ count.adhesion.id }}</li>
+    <li>{{ adhesionid }}</li>
+    <li>{{ userid }}</li>
+  {% else %}
+    <li>Pas d'utilisateur trouvé.</li>
+  {% endfor %}
+</ul>
+
+ {# <div class="well">
+ <ul>
+  {% for listUser in listUsers %}
+    <li>{{ listUser.username }}</li>
+  {% else %}
+    <li>Pas d'utilisateur trouvé.</li>
+  {% endfor %}
+</ul> #}
+
+{% endblock %} 

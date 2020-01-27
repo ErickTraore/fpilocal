@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abonnement payé.{% endblock %}
+
+{% block body %}
+ <div class="well">
+ <ul>
+            <div> <img src="{{ asset('assets/img/logofpi.png') }}" class="img-circle"  alt="logo"></div>
+				<h4>FRONT  POPULAIRE  IVOIRIEN</h4>        
+				<h6>Représentation FPI-FRANCE</h6>        
+			</div>
+
+<caption class="well well-sm"><h3> Liste des Adhérents ayant payé un abonnement.</h3></caption>
+    <table>
+    {% if counts %}
+            <tr>
+                <th class="well">id:</th>
+                <th class="well">Sex:</th>
+                <th class="well">N°Tel:</th>
+                <th class="well">N°Adher:</th>
+                <th class="well">Nom </th>
+                <th class="well">Prenom </th>
+                <th class="well">Naissance </th>
+                <th class="well">lieu naiss </th>
+                <th class="well">Profession </th>
+                <th class="well">voie </th>
+                <th class="well">N° voie </th>
+                <th class="well">Nom voie </th>
+                <th class="well">Nom ville </th>
+                <th class="well">Nom pays </th>
+                <th class="well">code postale </th>
+                <th class="well">Photo </th>
+            </tr>
+         {% for user in listusers  %}
+         <tr> 
+                <td class="well well-sm">{{ user.id | default("") }}</td>
+                <td class="well well-sm">{{ user.adhesion.gender | default("") }}</td>
+                <td class="well well-sm">{{ user.username  | default("") }}</td>
+                <td class="well well-sm">{{ user.adhesion.id  | default("") }}</td>
+                <td class="well well-sm">{{ user.adhesion.firstname  | default("") }}</td>
+                <td class="well well-sm">{{ user.adhesion.lastname  | default("") }}</td>
+                <td class="well well-sm">{{ user.adhesion.birthday | default("") | date('d-m-Y')  }}</td>
+                <td class="well well-sm">{{ user.adhesion.lieunaissance  | default("") }}</td>
+                <td class="well well-sm">{{ user.adhesion.profession  | default("") }}</td>
+                <td class="well well-sm">{{ user.adhesion.voie  | default("") }}</td>
+                <td class="well well-sm">{{ user.adhesion.novoie  | default("") }}</td>
+                <td class="well well-sm">{{ user.adhesion.nomvoie  | default("") }}</td>
+                <td class="well well-sm">{{ user.adhesion.ville  | default("") }}</td>
+                <td class="well well-sm">{{ user.adhesion.pays  | default("") }}</td>
+                <td class="well well-sm">{{ user.adhesion.codepostale  | default("") }}</td>
+                <td> <img style="margin:15px" width="120" src='{{ asset('assets/images/' ~ user.adhesion.image | default("")) }}'></td>
+         </tr>
+         {% endfor %}
+    {% else %}
+   Aucun Abonnement d'adherents.
+{% endif %}
+    </table>  
+</u>
+</div>
+<a href="{{ '/' }}"><p><h4><span class="label label-success">Retour</span></h4></p></a>
+</div>
+{% endblock %} 

@@ -1,0 +1,28 @@
+{% block body %}
+<h2> Signature électronique: </h2>
+<h4>Veullez entrez le code signature reçu par sms.<h4>
+{# {{ form_start(formUser, { attr: {novalidate: 'novalidate'} }) }} #}
+{{ form_start(formUser) }}
+{# {{ dump(formUser.vars.value.signature) }} #}
+  {# <input type="hidden" name="valuecode" value={{ formUser.vars.value.signature }}><br> #}
+  {# Code signature reçu par sms: <input type="text" name="codesms"><br> #}
+ {# {{ form_widget(formUser) }} #}
+ <div class="form-group">
+{{ form_label(formUser.signature, 'Code signature') }}
+{{ form_widget(formUser.signature, {'attr':{'class':'form-control'}}) }}
+{{ form_errors(formUser.signature) }}
+</div>
+
+
+
+{# {{ dump(formUser.vars.value.username) }} #}
+{# <form action="signaturetripleafter"> #}
+  {# <input type="submit" value="Submit"> #}
+{# </form> #}
+
+ {{ form_end(formUser) }} 
+
+{% endblock %}
+
+{% block droite %}
+{% endblock %}

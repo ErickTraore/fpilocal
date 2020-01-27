@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement Carte Adhesion{% endblock %}
+
+{% block body %}
+<form action="" method="POST">
+<p><h2>Paiement de ma carte: Adhesion</h2></p>
+{# <label> Nombre de mois</label> #}
+<label> Je paie la somme de:</label>
+<select name="amountun">
+    <option value="">--Please choisir une option--</option> #}
+    {# <option value="500">Cinq euros = 5€</option> #}
+    <option value="2000">France 20€</option>
+    <option value="5000">France 50€</option>
+    {# <option value="10000">Cent euros = 100€</option> #}
+</select> 
+<button type="submit">Envoyer</button>
+{# <input type='button' name="stop" value="Annuler" onclick='location:http://fpiinscription.com/index.php/'> #}
+{# <button type="submit" name="stop" value="annuler">Annuler</button> #}
+</form>
+
+<form action="http://fpiinscription.com/index.php/" method="POST">
+ <input type="SUBMIT" name="bouton1" value="Annuler">
+</form>
+
+{% endblock %}
