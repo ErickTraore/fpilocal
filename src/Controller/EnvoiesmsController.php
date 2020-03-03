@@ -206,5 +206,117 @@ return $this->render('page_erreurr_sms.html.twig');
         
         return $this->render('security2/smspartnersignature.html.twig');
     }
+
+     
+    /**
+     * @Route("/groupesms/{listes}", name="envoiesms_groupesms")
+     */
+    public function groupesms(Request $request, $listes): Response
+    {
+        $message_phone = "je suis en test";
+        
+        foreach($listes as $liste)
+         {
+            $number_phone = $liste;
+            
+            if (isset($number_phone)) {
+                $smspartner = new SMSPartnerAPI();
+                $fields = array(
+                            "apiKey"=>"5b3b53fe23b06156697ba0e227bc37cff4906e33",
+                            "phoneNumbers"=>$number_phone,
+                            "message"=>$message_phone,
+                            "sender" => "FPI FRANCE",
+                        );
+                $result = $smspartner->sendSms($fields);
+            }
+        }
+              return $this->render('security2/smsbureau.html.twig');
+                      
+                
+            
+        return $this->render('page_erreurr_sms.html.twig');   
+    }    
+
+    /**
+     * @Route("/lwsgroupesms/{listes}", name="envoiesms_lwsgroupesms")
+     */
+    public function lwsgroupesms(Request $request, $listes): Response
+    {
+        $message_phone = "je suis en test";
+        
+        foreach($listes as $liste)
+         {
+            $number_phone = $liste;
+            
+            if (isset($number_phone)) {
+                // $smspartner = new SMSPartnerAPI();
+                // $fields = array(
+                //             "apiKey"=>"5b3b53fe23b06156697ba0e227bc37cff4906e33",
+                //             "phoneNumbers"=>$number_phone,
+                //             "message"=>$message_phone,
+                //             "sender" => "FPI FRANCE",
+                //         );
+                // $result = $smspartner->sendSms($fields);
+                /* On prépare les variables */
+
+        /* Url de l'API */
+        $gateway_url = "https://sms.lws.fr/sms/api";
+
+        /* Action appelé via l'API */
+        $action = "send-sms";
+
+        /* Clé API */
+        $apiKey  = "ZGFvdWRhOiQyeSQxMCRneVdNTWhZT3dpYTdhb0NNLlI2blAuSkRMY2ZNSmRsbGZ4OS5yUHdGU1NOaC52Mk9OcURhUw==";
+
+        /* Numéro vers lequel sera envoyé le SMS
+         * Format International - exemple 33600000000
+         */
+        $to = 33778351871;
+
+        /* SenderID qui sera affiché sur le téléphone portable. */
+        $senderID  = "FPI_GBAGBO";
+
+        /* Encode le message en version SMS qui sera envoyé */
+        // $message  = urlencode("Ceci est un message de test apres 18H10");
+        $message  = $message_phone;
+
+        // Prepare le tableau de données pour la requête API
+        $data = array('action' => $action,
+              'api_key' => $apiKey,
+              'to' => $to,
+              'from' => $senderID,
+              'sms' => $message,
+        );
+
+        // Envoie la requête API via cURL
+        $ch = curl_init($gateway_url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        $get_data = json_decode($response, true);
+
+
+        /* On traite le retour.
+         * get_date['code'] récupére un code selon la réussite ou l'erreur de l'API
+         * get_date['Message'] récupére le message Success ou explication de l'erreur.
+         */
+
+        if ($get_data['code'] === 'ok') {
+                                        echo 'Le SMS a bien été envoyé';
+                                        } 
+                                        else {
+                                              echo 'Code Erreur : '.$get_data['code'].' -- '.$get_data['message'];
+                                             }
+        
+            }
+        }
+              return $this->render('tablelyon/lwssmsbureau.html.twig');
+                      
+                
+            
+        // return $this->render('page_erreurr_sms.html.twig');   
+    }    
     
 }

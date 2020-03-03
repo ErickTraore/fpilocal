@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\SMSPartnerAPI;
 use App\Entity\Tablelyon;
 use App\Form\TablelyonType;
 use App\Repository\TablelyonRepository;
@@ -16,6 +17,33 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class TablelyonController extends AbstractController
 {
+     /**
+     * @Route("/smsbureau", name="tablelyon_smsbureau", methods={"GET"})
+     */
+    public function smsbureau(TablelyonRepository $tablelyonRepository): Response
+    {
+            $liste_phones = $tablelyonRepository->findAll();
+            $liste[] = "";
+            $message_phone = "je suis en test";
+
+            foreach($liste_phones as $phone)
+            {
+                $number_phone = $phone->getUsername();
+                if (isset($number_phone)) 
+                                {
+                                    $smspartner = new SMSPartnerAPI();
+                                    $fields = array(
+                                                "apiKey"=>"5b3b53fe23b06156697ba0e227bc37cff4906e33",
+                                                "phoneNumbers"=>$number_phone,
+                                                "message"=>$message_phone,
+                                                "sender" => "FPI FRANCE",
+                                            );
+                                    $result = $smspartner->sendSms($fields);
+                                }
+            }
+            return $this->render('tablelyon/smsbureau.html.twig');
+            
+        }
     /**
      * @Route("/", name="tablelyon_index", methods={"GET"})
      */
