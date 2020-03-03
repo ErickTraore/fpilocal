@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+<caption class="well well-sm"><h2> Liste totale de tous le adherents et sympathisants</h2></caption>
+
+    <table>
+            <tr>
+                <th class="well">id:</th>
+                <th class="well">N° Tél:</th>
+                <th class="well">date-crea:</th>
+                <th class="well">Nom:</th>
+                <th class="well">Prenom:</th>
+            </tr>
+         {% for user in users  %}
+            <tr>
+                <td class="well well-sm">{{ user.id | default("") }}</td>
+                <td class="well well-sm">{{ user.username  | default("") }}</td>
+                <td class="well well-sm">{{ user.date_crea.date | default("") | date('d-m-Y')  }}</td>
+                <td class="well well-sm">{{ user.nom  | default("") }}</td>
+                <td class="well well-sm">{{ user.prenom  | default("") }}</td>
+
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

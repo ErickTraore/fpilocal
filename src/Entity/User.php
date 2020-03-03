@@ -30,7 +30,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=191, unique=true)
      * @Assert\NotBlank()
      * @Assert\Regex(
-     *     pattern     = "/^0033778351871$/")
+     *     pattern     = "/^((\+|00)33\s?)[67](\s?\d{2}){4}$/")
      */
     private $username;
 

@@ -30,6 +30,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
+     * @Route("/home", name="admin_home")
+     */
+    public function indexHome()
+    {
+        $content = file_get_contents('http://www.fpiinscription.com/users');
+        $contents=json_decode($content,TRUE);//Decodes json into an array 
+            return $this->render('home/index.html.twig', [
+                'controller_name' => 'HomeController',
+                'users' => $contents
+            ]);
+     
+    }
+    
+    /**
     * @Route("/commandecarte", name="admin_commandecarte")
     */
     public function commandecarte(CountRepository $countRepository, AdhesionRepository $adhesionRepository, UserRepository $userRepository, ImageRepository $mageRepository):Response

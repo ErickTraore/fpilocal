@@ -1,41 +1,15 @@
 {# templates/menu-accordeon.html.twig #}
 
 <ul id="menu-accordeon">
-
-    
-
-   <li><a href="#">Tableau Lyon</a>  
-      <ul>
-         {# "{{ path('count_makeCarte') }}" #}
-         <li><a href="{{ path('tablelyon_new') }}">Enregistrement</a></li>
-         <li><a href="{{ path('tablelyon_index') }}">Liste-Section-Lyon-I</a></li>
-         <li><a href="{{ path('tablelyon_bureau') }}">Liste-Bureau</a></li>
-      </ul>
+   <li><a href="#">Liste Auv/Rhône/Alpes </a>
+            <ul>
+               <li><a href="{{ path('tablelyon_new') }}">Ajouter Mbre Bureau</a></li>
+            </ul>
+             <ul>
+               <li><a href="{{ path('tablelyon_index') }}">Lister Mbre Bureau</a></li>
+            </ul>
+            <ul>
+               <li><a href="{{ path('admin_home') }}">Sympathisants</a></li>
+            </ul>
    </li>
-
-   <li><a href="#">Tableau Admin</a>  
-      <ul>
-         <li><a href="{{ path('admin_listetotal') }}">Liste-Total</a></li>
-         <li><a href="{{ path('admin_listeadherent') }}">Liste-Adherents</a></li>
-         <li><a href="{{ path('admin_listeadmin') }}">Liste-Administrateurs</a></li>
-         <li><a href="{{ path('admin_listesuperadmin') }}">Liste-Super_Admin</a></li>
-         <li><a href="{{ path('admin_paiementadherent') }}">Paiements adhesions</a></li>
-         <li><a href="{{ path('admin_paiementdon') }}">Paiements dons</a></li>
-         <li><a href="{{ path('admin_paiementvente') }}">Paiements ventes</a></li>{# <li><a href="{{ path('envoiesms_general') }}">Communications</a></li> #}
-      </ul>
-   </li>
-
-     <li><a href="#">Tableau Technique</a>  
-      <ul>
-         <li><a href="{{ path('admin_commandecarte') }}">Liste-Cde-carte</a></li>
-      </ul>
-   </li>
-
-   <li><a href="#">Mot de Pass</a>
-      <ul>
-         <li><a href="{{ path('mdpupdate') }}">Remplacez</a></li>
-      </ul>
-   </li>
-
- 
-</ul>
+   
