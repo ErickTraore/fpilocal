@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableconsultation index{% endblock %}
+
+{% block body %}
+    <h1>Tableconsultation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Titre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tableconsultation in tableconsultations %}
+            <tr>
+                <td>{{ tableconsultation.id }}</td>
+                <td>{{ tableconsultation.firstname }}</td>
+                <td>{{ tableconsultation.lastname }}</td>
+                <td>{{ tableconsultation.username }}</td>
+                <td>{{ tableconsultation.email }}</td>
+                <td>{{ tableconsultation.roles }}</td>
+                <td>{{ tableconsultation.titre }}</td>
+                <td>
+                    <a href="{{ path('tableconsultation_show', {'id': tableconsultation.id}) }}">show</a>
+                    <a href="{{ path('tableconsultation_edit', {'id': tableconsultation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tableconsultation_new') }}">Create new</a>
+{% endblock %}

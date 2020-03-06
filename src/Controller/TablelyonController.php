@@ -4,13 +4,19 @@ namespace App\Controller;
 
 use App\Entity\SMSPartnerAPI;
 use App\Entity\Tablelyon;
+use App\Entity\Tableconsultation;
+use App\Form\SmsbureauType;
 use App\Form\TablelyonType;
+use App\Form\TableconsultationType;
+use App\Repository\SmsbureauRepository;
 use App\Repository\TablelyonRepository;
+use App\Repository\TableconsultationRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Controller\TablelyonController;
 
 /**
  * @Route("/tablelyon")
@@ -18,13 +24,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class TablelyonController extends AbstractController
 {
      /**
-     * @Route("/smsbureau", name="tablelyon_smsbureau", methods={"GET"})
+     * @Route("/smsbureau/{textesms}", name="tablelyon_smsbureau", methods={"GET"})
      */
-    public function smsbureau(TablelyonRepository $tablelyonRepository): Response
+    public function smsbureau(TablelyonRepository $tablelyonRepository,$textesms): Response
     {
+            $message_phone = $textesms ;
+            
             $liste_phones = $tablelyonRepository->findAll();
             $liste[] = "";
-            $message_phone = "je suis en test";
 
             foreach($liste_phones as $phone)
             {
@@ -43,7 +50,37 @@ class TablelyonController extends AbstractController
             }
             return $this->render('tablelyon/smsbureau.html.twig');
             
-        }
+    }
+
+         /**
+     * @Route("/smsconsultation/{textesms}", name="tablelyon_smsconsultation", methods={"GET"})
+     */
+    public function smsconsultation(TableconsultationRepository $tableconsultationRepository,$textesms): Response
+    {
+            $message_phone = $textesms ;
+            
+            $liste_phones = $tableconsultationRepository->findAll();
+            $liste[] = "";
+
+            foreach($liste_phones as $phone)
+            {
+                $number_phone = $phone->getUsername();
+                if (isset($number_phone)) 
+                                {
+                                    $smspartner = new SMSPartnerAPI();
+                                    $fields = array(
+                                                "apiKey"=>"5b3b53fe23b06156697ba0e227bc37cff4906e33",
+                                                "phoneNumbers"=>$number_phone,
+                                                "message"=>$message_phone,
+                                                "sender" => "FPI FRANCE",
+                                            );
+                                    $result = $smspartner->sendSms($fields);
+                                }
+            }
+            return $this->render('tablelyon/smsconsultation.html.twig');
+            
+    }
+    
     /**
      * @Route("/", name="tablelyon_index", methods={"GET"})
      */
@@ -53,6 +90,7 @@ class TablelyonController extends AbstractController
             'tablelyons' => $tablelyonRepository->findAll(),
         ]);
     }
+
 
     /**
      * @Route("/bureau", name="tablelyon_bureau", methods={"GET"})

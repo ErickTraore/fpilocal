@@ -1,18 +1,43 @@
 {# templates/menu-accordeon.html.twig #}
 
 <ul id="menu-accordeon">
-   <li><a href="#">Liste Auv/Rhône/Alpes </a>
+   <li><a href="#">Liste officiel du fpi </a>
             <ul>
-               <li><a href="{{ path('tablelyon_new') }}">Ajouter Mbre Bureau</a></li>
+               <li><a href="{{ path('admin_home') }}">Liste</a></li>
+            </ul>
+   </li>
+
+     <li><a href="#">Membre Bureau </a>
+            <ul>
+               <li><a href="{{ path('tablelyon_new') }}">Créer un Mbre</a></li>
             </ul>
              <ul>
-               <li><a href="{{ path('tablelyon_index') }}">Lister Mbre Bureau</a></li>
+               <li><a href="{{ path('tablelyon_index') }}">Lister tous les Mbres</a></li>
             </ul>
+     </li>
+    <li><a href="#">Membre consultation </a>
             <ul>
-               <li><a href="{{ path('admin_home') }}">Sympathisants</a></li>
+               <li><a href="{{ path('tableconsultation_new') }}">Créer un Mbre</a></li>
             </ul>
              <ul>
-               <li><a href="{{ path('tablelyon_smsbureau') }}">Envoie sms bureau</a></li>
+               <li><a href="{{ path('tableconsultation_index') }}">Lister tous les Mbres</a></li>
+            </ul>
+   </li>
+       <li><a href="#">Envoi sms </a>
+             <ul>
+               <li><a href="{{ path('smsbureau_new') }}">Créer un sms</a></li>
+            </ul>
+            <ul>
+               <li><a href="{{ path('smsbureau_index') }}">Envoi sms</a></li>
+            </ul>
+   </li>
+     </li>
+       <li><a href="#">Documents local </a>
+             <ul>
+               <li><a href="{{ path('product_new') }}">Enregistrement</a></li>
+            </ul>
+            <ul>
+               <li><a href="{{ path('product_index') }}">Lecture</a></li>
             </ul>
    </li>
    

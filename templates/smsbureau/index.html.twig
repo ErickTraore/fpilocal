@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Smsbureau index{% endblock %}
+
+{% block body %}
+    <h1>Smsbureau index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre sms</th>
+                <th>Message sms</th>
+                <th>Date sms</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for smsbureau in smsbureaus %}
+            <tr>
+                <td>{{ smsbureau.id }}</td>
+                <td>{{ smsbureau.titresms }}</td>
+                <td>{{ smsbureau.messagesms }}</td>
+                <td>{{ smsbureau.datesms ? smsbureau.datesms|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('smsbureau_show', {'id': smsbureau.id}) }}">show</a>
+                    <a href="{{ path('smsbureau_edit', {'id': smsbureau.id}) }}">edit</a>
+                    <a href="{{ path('smsbureau_smstous', {'id': smsbureau.id}) }}">envoi-sms_R_A-tous-</a>
+                    <a href="{{ path('smsbureau_smsconsultation', {'id': smsbureau.id}) }}">envoi-sms_consultation-</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('smsbureau_new') }}">Create new</a>
+{% endblock %}

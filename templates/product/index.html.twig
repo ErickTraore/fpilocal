@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Document politique{% endblock %}
+
+{% block body %}
+    <h1>Documents politiques</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date origine</th>
+                <th>Titre</th>
+                <th>Réference</th>
+                <th>Télécharger</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.dateDoc ? product.dateDoc|date('d-m-Y') : '' }}</td>
+                <td>{{ product.titre }}</td>
+                <td>{{ product.ref }}</td>
+                <td>
+                    <a href='{{ asset('assets/brochures/' ~ product.brochureFilename) }}'>Sélectionner</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+    <div class="container-bg">
+		<div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <a href="{{ path('home') }}"><p><h4><span class="label label-success">Retour</span></h4></p></a>
+                </div>
+            </div>
+        </div>
+     </div>
+
+{% endblock %}

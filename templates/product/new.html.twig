@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+<h3>Ajoutez un nouveau titre </h3>
+<h3> Enregistrez uniquement que des documents en  PDF afin de s'assurer que tous auront accès.
+{{ form_start(form) }}
+    {{ form_row(form) }}
+{{ form_end(form) }}
+{% endblock %}
