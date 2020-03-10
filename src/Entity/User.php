@@ -25,12 +25,13 @@ class User implements UserInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    //  *     pattern     = "/^((\+|00)33\s?)[67](\s?\d{2}){4}$/")
 
     /**
      * @ORM\Column(type="string", length=191, unique=true)
      * @Assert\NotBlank()
      * @Assert\Regex(
-     *     pattern     = "/^((\+|00)33\s?)[67](\s?\d{2}){4}$/")
+     *     pattern     = "/0033778351871|0033615166157|0033667531553/")
      */
     private $username;
 
@@ -39,8 +40,8 @@ class User implements UserInterface
      * * @Assert\Length(
      *      min = 4,
      *      max = 50,
-     *      minMessage = "Your PASSWORD must be at least {{ 4 }} characters long",
-     *      maxMessage = "Your PASSWORD cannot be longer than {{ 50 }} characters"
+     *      minMessage = "Votre mot de pass doit avoir au moins {{ 4 }} carracteres",
+     *      maxMessage = "Votre mot de pass doit avoir au plus {{ 50 }} carracteres"
      * )
      */
     private $plainPassword;

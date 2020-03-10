@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tablesection3 index{% endblock %}
+
+{% block body %}
+    <h1>Tablesection3 index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Titre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tablesection3 in tablesection3s %}
+            <tr>
+                <td>{{ tablesection3.id }}</td>
+                <td>{{ tablesection3.firstname }}</td>
+                <td>{{ tablesection3.lastname }}</td>
+                <td>{{ tablesection3.username }}</td>
+                <td>{{ tablesection3.email }}</td>
+                <td>{{ tablesection3.roles }}</td>
+                <td>{{ tablesection3.titre }}</td>
+                <td>
+                    <a href="{{ path('tablesection3_show', {'id': tablesection3.id}) }}">show</a>
+                    <a href="{{ path('tablesection3_edit', {'id': tablesection3.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tablesection3_new') }}">Create new</a>
+{% endblock %}

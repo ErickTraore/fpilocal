@@ -63,12 +63,34 @@ class SmsbureauController extends AbstractController
     }
 
     /**
-     * @Route("/smstous/{id}", name="smsbureau_smstous", methods={"GET"})
+     * @Route("/smshistorique/{id}", name="smsbureau_smshistorique", methods={"GET"})
      */
-    public function smstous(Smsbureau $smsbureau): Response
+    public function smshistorique(Smsbureau $smsbureau): Response
     {
         $textesms = $smsbureau->getMessagesms();
-        return $this->redirectToRoute('tablelyon_smsbureau', [
+        return $this->redirectToRoute('tablelyon_smshistorique', [
+            'textesms' => $textesms 
+        ]);
+    }
+
+      /**
+     * @Route("/smsehivet/{id}", name="smsbureau_smsehivet", methods={"GET"})
+     */
+    public function smsehivet(Smsbureau $smsbureau): Response
+    {
+        $textesms = $smsbureau->getMessagesms();
+        return $this->redirectToRoute('tablelyon_smsehivet', [
+            'textesms' => $textesms 
+        ]);
+    }
+
+      /**
+     * @Route("/smsgrenoble/{id}", name="smsbureau_smsgrenoble", methods={"GET"})
+     */
+    public function smsgrenoble(Smsbureau $smsbureau): Response
+    {
+        $textesms = $smsbureau->getMessagesms();
+        return $this->redirectToRoute('tablelyon_smsgrenoble', [
             'textesms' => $textesms 
         ]);
     }

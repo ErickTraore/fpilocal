@@ -2,21 +2,30 @@
 
 namespace App\Controller;
 
+use App\Controller\TableconsultationController;
+use App\Controller\TablelyonController;
+use App\Controller\Tablesection2Controller;
+use App\Controller\Tablesection3Controller;
 use App\Entity\SMSPartnerAPI;
-use App\Entity\Tablelyon;
 use App\Entity\Tableconsultation;
+use App\Entity\Tablelyon;
+use App\Entity\Tablesection2;
+use App\Entity\Tablesection3;
 use App\Form\SmsbureauType;
-use App\Form\TablelyonType;
 use App\Form\TableconsultationType;
+use App\Form\TablelyonType;
+use App\Form\Tablesection2Type;
+use App\Form\Tablesection3Type;
 use App\Repository\SmsbureauRepository;
-use App\Repository\TablelyonRepository;
 use App\Repository\TableconsultationRepository;
+use App\Repository\TablelyonRepository;
+use App\Repository\Tablesection2Repository;
+use App\Repository\Tablesection3Repository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Controller\TablelyonController;
 
 /**
  * @Route("/tablelyon")
@@ -24,9 +33,9 @@ use App\Controller\TablelyonController;
 class TablelyonController extends AbstractController
 {
      /**
-     * @Route("/smsbureau/{textesms}", name="tablelyon_smsbureau", methods={"GET"})
+     * @Route("/smshistorique/{textesms}", name="tablelyon_smshistorique", methods={"GET"})
      */
-    public function smsbureau(TablelyonRepository $tablelyonRepository,$textesms): Response
+    public function smshistorique(TablelyonRepository $tablelyonRepository,$textesms): Response
     {
             $message_phone = $textesms ;
             
@@ -51,7 +60,64 @@ class TablelyonController extends AbstractController
             return $this->render('tablelyon/smsbureau.html.twig');
             
     }
+    
+    /**
+     * @Route("/smsehivet/{textesms}", name="tablelyon_smsehivet", methods={"GET"})
+     */
+    public function smsehivet(Tablesection2Repository $tablesection2Repository,$textesms): Response
+    {
+            $message_phone = $textesms ;
+            
+            $liste_phones = $tablesection2Repository->findAll();
+            $liste[] = "";
 
+            foreach($liste_phones as $phone)
+            {
+                $number_phone = $phone->getUsername();
+                if (isset($number_phone)) 
+                                {
+                                    $smspartner = new SMSPartnerAPI();
+                                    $fields = array(
+                                                "apiKey"=>"5b3b53fe23b06156697ba0e227bc37cff4906e33",
+                                                "phoneNumbers"=>$number_phone,
+                                                "message"=>$message_phone,
+                                                "sender" => "FPI FRANCE",
+                                            );
+                                    $result = $smspartner->sendSms($fields);
+                                }
+            }
+            return $this->render('tablelyon/smsehivet.html.twig');
+            
+    }
+
+       /**
+     * @Route("/smsgrenoble/{textesms}", name="tablelyon_smsgrenoble", methods={"GET"})
+     */
+    public function smsgrenoble(Tablesection3Repository $tablesection3Repository,$textesms): Response
+    {
+            $message_phone = $textesms ;
+            
+            $liste_phones = $tablesection3Repository->findAll();
+            $liste[] = "";
+
+            foreach($liste_phones as $phone)
+            {
+                $number_phone = $phone->getUsername();
+                if (isset($number_phone)) 
+                                {
+                                    $smspartner = new SMSPartnerAPI();
+                                    $fields = array(
+                                                "apiKey"=>"5b3b53fe23b06156697ba0e227bc37cff4906e33",
+                                                "phoneNumbers"=>$number_phone,
+                                                "message"=>$message_phone,
+                                                "sender" => "FPI FRANCE",
+                                            );
+                                    $result = $smspartner->sendSms($fields);
+                                }
+            }
+            return $this->render('tablelyon/smsgrenoble.html.twig');
+            
+    }
          /**
      * @Route("/smsconsultation/{textesms}", name="tablelyon_smsconsultation", methods={"GET"})
      */

@@ -91,12 +91,11 @@ class SecurityController extends AbstractController
             $entityManager->flush();
 
             $datanum = $user->getId();
-            // $username = $user->getUsername();
             $request->getSession()->getFlashBag()->add('notice', 'Inscription bien enregistrée.');
             $message_inscription = " Bravo, vous etes maintenant inscrit au FPI sous le statut de SYMPATHISANT,ref: FPI-INS" . $datanum ." La direction du FPI vous remercie de votre confiance. ";
             //vérouillage ou dévérouillage des envois sms grace à $insertisok
-           // $smsok = false;
-            $smsok = true;
+            $smsok = false;
+           // $smsok = true;
             if ($smsok) {
                 return $this->redirectToRoute('envoiesms_sympathisant',[
                     'number_phone'  => $user->getUsername(),

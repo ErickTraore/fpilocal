@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Tablelyon;
+use App\Entity\Tablesection2;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -11,20 +11,20 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TablelyonType extends AbstractType
+class Tablesection2Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', TextType::class, [
-                'label' => 'Nom'
-                ])
-            ->add('lastname', TextType::class, [
-                'label' => 'Prénom'
-                ])
-            ->add('username', TextType::class, [
-                'label' => 'n° téléphone'
-                ])
+        ->add('firstname', TextType::class, [
+            'label' => 'Nom'
+            ])
+        ->add('lastname', TextType::class, [
+            'label' => 'Prénom'
+            ])
+        ->add('username', TextType::class, [
+            'label' => 'n° téléphone'
+            ])
             ->add('email')
             ->add('roles', ChoiceType::class, [
                 'choices' => [
@@ -64,16 +64,13 @@ class TablelyonType extends AbstractType
                 'preferred_choices' => ['muppets', 'ROLE_SYMPATHISANT'],
             ])
             ->add('titre')
-            
-            ->add('Annuler', SubmitType::class, ['label' => 'Annuler'])
-            
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Tablelyon::class,
+            'data_class' => Tablesection2::class,
         ]);
     }
 }

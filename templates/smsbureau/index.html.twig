@@ -4,29 +4,31 @@
 
 {% block body %}
     <h1>Smsbureau index</h1>
-
-    <table class="table">
+<h4>Un envoi SMS comporte 160 caractères espaces inclus</h4>
+    <table class="table table-bordered table-striped table-condensed">
         <thead>
-            <tr>
+            <tr class="danger">
                 <th>Id</th>
                 <th>Titre sms</th>
                 <th>Message sms</th>
                 <th>Date sms</th>
-                <th>actions</th>
+                <th>selectionnez une action</th>
             </tr>
         </thead>
         <tbody>
         {% for smsbureau in smsbureaus %}
-            <tr>
+            <tr class="success">
                 <td>{{ smsbureau.id }}</td>
                 <td>{{ smsbureau.titresms }}</td>
                 <td>{{ smsbureau.messagesms }}</td>
                 <td>{{ smsbureau.datesms ? smsbureau.datesms|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('smsbureau_show', {'id': smsbureau.id}) }}">show</a>
-                    <a href="{{ path('smsbureau_edit', {'id': smsbureau.id}) }}">edit</a>
-                    <a href="{{ path('smsbureau_smstous', {'id': smsbureau.id}) }}">envoi-sms_R_A-tous-</a>
-                    <a href="{{ path('smsbureau_smsconsultation', {'id': smsbureau.id}) }}">envoi-sms_consultation-</a>
+                 <p> <a href="{{ path('smsbureau_show', {'id': smsbureau.id}) }}"><span class="label label-info">afficher le sms</span> </a> </p>
+                 <p> <a href="{{ path('smsbureau_edit', {'id': smsbureau.id}) }}"><span class="label label-info">modifier le sms</span> </a> </p>
+                 <p> <a href="{{ path('smsbureau_smshistorique', {'id': smsbureau.id}) }}"><button class="label label-danger">Envoi-sms<span class="badge text-success">section-historique</span></button></a> </p>
+                 <p> <a href="{{ path('smsbureau_smsehivet', {'id': smsbureau.id}) }}"><button class="label label-danger">Envoi-sms<span class="badge text-success">section-Ehivet</span></button></a> </p>
+                 <p> <a href="{{ path('smsbureau_smsgrenoble', {'id': smsbureau.id}) }}"><button class="label label-danger">Envoi-sms<span class="badge text-success">section-Grenoble</button></a> </p>
+                 <p> <a href="{{ path('smsbureau_smsconsultation', {'id': smsbureau.id}) }}"><button class="label label-danger">Envoi-sms<span class="badge text-success">pour consultation</button></a> </p>
                 </td>
             </tr>
         {% else %}

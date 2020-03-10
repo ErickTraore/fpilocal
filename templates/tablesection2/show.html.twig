@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tablesection2{% endblock %}
+
+{% block body %}
+    <h1>Tablesection2</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tablesection2.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ tablesection2.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ tablesection2.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ tablesection2.username }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ tablesection2.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ tablesection2.roles }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ tablesection2.titre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('tablesection2_index') }}">back to list</a>
+
+    <a href="{{ path('tablesection2_edit', {'id': tablesection2.id}) }}">edit</a>
+
+    {{ include('tablesection2/_delete_form.html.twig') }}
+{% endblock %}

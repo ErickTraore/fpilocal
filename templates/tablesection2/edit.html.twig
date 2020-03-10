@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Tablesection2{% endblock %}
+
+{% block body %}
+    <h1>Edit Tablesection2</h1>
+
+    {{ include('tablesection2/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('tablesection2_index') }}">back to list</a>
+
+    {{ include('tablesection2/_delete_form.html.twig') }}
+{% endblock %}
